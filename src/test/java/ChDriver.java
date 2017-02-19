@@ -1,6 +1,7 @@
 import java.io.File;
 
 import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,14 +12,15 @@ import org.openqa.selenium.remote.DesiredCapabilities;
  * Created by Анастасия Цыбулько on 15.02.2017.
  */
 public class ChDriver {
+    ChromeDriver driver = new ChromeDriver();
 
     @Test
     public void chromeWebTest() throws Exception {
 
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         DesiredCapabilities chrome = new DesiredCapabilities().chrome();
-        ChromeDriver driver = new ChromeDriver();
-
+        //ChromeDriver driver = new ChromeDriver();
+        driver.get("https://www.yandex.ru/");
         driver.findElement(By.id("text")).sendKeys("Selenium Webdriver");
 
         driver.findElement(By.cssSelector(".suggest2-form__button")).click();
@@ -32,5 +34,10 @@ public class ChDriver {
         FileUtils.copyFile(screenshot, new File("screenshot.png"));
 
 
+    }
+    @After
+    public void quitDriver() {
+
+        driver.quit();
     }
 }
