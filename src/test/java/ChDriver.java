@@ -2,6 +2,7 @@ import java.io.File;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,11 +15,18 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class ChDriver {
     ChromeDriver driver = new ChromeDriver();
 
+    @Before
+    public void createDriver() {
+
+
+        DesiredCapabilities chrome = new DesiredCapabilities().chrome();
+    }
+
     @Test
     public void chromeWebTest() throws Exception {
 
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        DesiredCapabilities chrome = new DesiredCapabilities().chrome();
+        //DesiredCapabilities chrome = new DesiredCapabilities().chrome();
         //ChromeDriver driver = new ChromeDriver();
         driver.get("https://www.yandex.ru/");
         driver.findElement(By.id("text")).sendKeys("Selenium Webdriver");
