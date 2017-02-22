@@ -15,12 +15,14 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class ChDriver {
 
     ChromeDriver driver;
+    // почему ссылка на DesiredCapabilities называется chrome?
     DesiredCapabilities chrome;
 
     @Before
     public void createDriver() {
 
         driver = new ChromeDriver();
+        // Для чего здесь вообще нужны эти desiredCapabilities?
         chrome = new DesiredCapabilities().chrome();
 
 
@@ -29,6 +31,7 @@ public class ChDriver {
     @Test
     public void chromeWebTest() throws Exception {
 
+        // Почему это нельзя было сделать в Before?
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
         driver.get("https://www.yandex.ru/");
